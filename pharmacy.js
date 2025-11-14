@@ -29,16 +29,15 @@ export class Pharmacy {
           this.updateUnoneDrug(drug);
           break;
       }
+
+      if (drug.name != "Magic Pill") {
+        drug.expiresIn -= 1;
+      }
+
+      if (drug.expiresIn < 0) {
+        this.handleExpiredDrug(drug);
+      }
     });
-
-    if (drug.name != "Magic Pill") {
-      drug.expiresIn -= 1;
-    }
-
-    if (drug.expiresIn < 0) {
-      this.handleExpiredDrug(drug);
-    }
-
     return this.drugs;
   }
 
